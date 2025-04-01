@@ -68,3 +68,6 @@ This was made as simple tool for myself, will plan for future improvements.
 
 # Author
 Created by Gerard G. Ripin
+
+# License
+MIT
