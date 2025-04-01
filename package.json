@@ -1,0 +1,20 @@
+{
+  "name": "gpt-thread-extractor",
+  "version": "0.1.0",
+  "description": "Extracts specific conversations from ChatGPT data exports into clean JSON.",
+  "author": "Gerard G. Ripin",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "parse": "bun run src/index.ts",
+    "build": "bun build ./src/index.ts --outfile ./dist/extractor --compile --minify"
+
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "dependencies": {
+  }
+}

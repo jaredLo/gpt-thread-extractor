@@ -179,5 +179,5 @@ dist
 dist/
 bun.lockb
 *.log
-*.json
+conversations.json
 !.vscode/
