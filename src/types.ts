@@ -1,5 +1,3 @@
-
-
 export interface ChatMessageAuthor {
     role: string;
     name: string | null;
@@ -8,7 +6,38 @@ export interface ChatMessageAuthor {
 
 export interface ChatMessageContent {
     content_type: string;
-    parts: string[];
+    parts: ChatMessageContentPart[];
+}
+
+export type ChatMessageContentPart = string | StructuredContentPart;
+
+export interface GenericStructuredContentPart {
+    content_type: string;
+    [key: string]: unknown;
+}
+
+export interface AudioTranscriptionPart extends GenericStructuredContentPart {
+    content_type: 'audio_transcription';
+    text?: string;
+    direction?: string;
+    decoding_id?: string | null;
+}
+
+export interface AudioAssetPointerPart extends GenericStructuredContentPart {
+    content_type: 'audio_asset_pointer';
+    asset_pointer?: string;
+    size_bytes?: number;
+    format?: string;
+    metadata?: Record<string, unknown>;
+}
+
+export interface RealTimeUserAudioVideoAssetPointerPart extends GenericStructuredContentPart {
+    content_type: 'real_time_user_audio_video_asset_pointer';
+    audio_asset_pointer?: AudioAssetPointerPart;
+    frames_asset_pointers?: unknown[];
+    video_container_asset_pointer?: unknown;
+    audio_start_timestamp?: number;
+    expiry_datetime?: string;
 }
 
 export interface ChatMessageMetadata {
@@ -64,3 +93,8 @@ export type ExportData = Conversation[];
 export type FormattedMessage = string;
 
 export type OutputData = FormattedMessage[];
+export type StructuredContentPart =
+    | AudioTranscriptionPart
+    | AudioAssetPointerPart
+    | RealTimeUserAudioVideoAssetPointerPart
+    | GenericStructuredContentPart;
